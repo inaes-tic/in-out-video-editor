@@ -1,15 +1,23 @@
 #!/bin/bash
-tty -s
-RETVAL=$?
+WGET=/usr/bin/wget
+VIDEO_NAME=ed_1024.ogv
+VIDEO_URL=https://archive.org/download/ElephantsDream/$VIDEO_NAME
+
 
 echo "Running unitary tests..."
 mocha tests/unit/model.js
 
-if [ $RETVAL -eq 0 ]; then
+echo "Running functional tests..."
+if [ "`which chromedriver`" == "" ]
+then
 
-    WGET=/usr/bin/wget
-    VIDEO_NAME=ed_1024.ogv
-    VIDEO_URL=https://archive.org/download/ElephantsDream/$VIDEO_NAME
+    echo ""
+    echo "The ChromeDriver could not be found on the current PATH."
+    echo "Please download the latest version of the ChromeDriver from"
+    echo "http://chromedriver.storage.googleapis.com/index.html"
+    echo "and ensure it can be found on your PATH."
+
+else
 
     if [ ! -f videos/$VIDEO_NAME ]
     then
@@ -24,16 +32,7 @@ if [ $RETVAL -eq 0 ]; then
     fi
 
     if [ -f videos/$VIDEO_NAME ]; then
-        echo "Running functional tests..."
-        if [ "`which chromedriver`" == "" ]; then
-            echo ""
-            echo "The ChromeDriver could not be found on the current PATH."
-            echo "Please download the latest version of the ChromeDriver from"
-            echo "http://chromedriver.storage.googleapis.com/index.html"
-            echo "and ensure it can be found on your PATH."
-        else
-            mocha -t 10000 tests/func/ui.js
-        fi
+        mocha -t 10000 tests/func/ui.js
     fi
 
 fi
