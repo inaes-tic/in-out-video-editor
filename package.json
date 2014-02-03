@@ -19,7 +19,7 @@
     "selenium-webdriver": "2.39.0"
   },
   "scripts": {
-    "test": "./bin/runtests"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
