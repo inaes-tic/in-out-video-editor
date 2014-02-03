@@ -1,0 +1,38 @@
+{
+  "name": "iove",
+  "version": "0.0.1",
+  "description": "HTML5 In-Out Video Editor",
+  "main": "iove.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "backbone": "1.1.0",
+    "underscore": "1.4.x",
+    "knockback" : "0.17.x",
+    "knockout" : "2.3.x"
+  },
+  "devDependencies": {
+    "mocha": "1.12.x",
+    "phantomjs": "1.9.6-0",
+    "chai": "1.9.0",
+    "selenium-webdriver": "2.39.0"
+  },
+  "scripts": {
+    "test": "./bin/runtests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/inaes-tic/iove"
+  },
+  "keywords": [
+    "html5",
+    "video",
+    "editor"
+  ],
+  "author": "Leonardo Vidarte",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/inaes-tic/iove/issues"
+  }
+}

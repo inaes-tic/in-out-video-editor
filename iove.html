@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>In Out Video Editor</title>
+    <link rel="stylesheet" href="iove.css" type="text/css" media="screen" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="node_modules/underscore/underscore.js"></script>
+    <script src="node_modules/backbone/backbone.js"></script>
+    <script src="node_modules/knockout/build/output/knockout-latest.js"></script>
+    <script src="node_modules/knockback/knockback.js"></script>
+    <script src="iove.js"></script>
+    <script src="view.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            var width = 640;
+            var height = 360;
+
+            var editor = new iove.InOutVideoEditor({
+                src: "videos/ed_1024.ogv",
+                fps: 24
+            });
+
+            var view = new InOutVideoEditorView(editor, $("#video")[0]);
+            ko.applyBindings(view, $("#content")[0]);
+
+            $('#video').css({width: width, heigth: height});
+            $('#seek-bar').css({width: width});
+            $('#goToFrame').click(function() {
+                view.goToFrame($('#frame').val());
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div id="content">
+        <div id="editor">
+            <video data-bind="attr: {src:src()}" id="video"></video>
+        </div>
+        <div id="info">
+            <table>
+                <tr><th>fps</th><td data-bind="text: fps" id="fps"></td></tr>
+                <tr><th>width</th><td data-bind="text: width" id="width"></td></tr>
+                <tr><th>height</th><td data-bind="text: height" id="height"></td></tr>
+                <tr><th>duration</th><td data-bind="text: duration" id="duration"></td></tr>
+                <tr><th>time</th><td data-bind="text: currentTime" id="currentTime"></td></tr>
+                <tr><th>frames</th><td data-bind="text: totalFrames" id="totalFrames"></td></tr>
+                <tr><th>frame</th><td data-bind="text: currentFrame" id="currentFrame"></td></tr>
+                <tr><th>begin</th><td data-bind="text: beginAt" id="beginAt"></td></tr>
+                <tr><th>end</th><td data-bind="text: endAt" id="endAt"></td></tr>
+            </table>
+        </div>
+        <div id="controls">
+            <input type="range" id="seek-bar" data-bind="attr: {max:totalFrames}, value: currentFrame, event: {change: function(o,e){goToFrame(parseInt(e.target.value))}}"/>
+            <div style="margin-top:5px">
+                <button data-bind="click: play" id="play">play</button>
+                <button data-bind="click: pause" id="pause">pause</button>
+                <br />
+                <button data-bind="click: function(){offset(1)}" id="plus1">+1 frame</button>
+                <button data-bind="click: function(){offset(-1)}" id="minus1">-1 frame</button>
+                <button data-bind="click: function(){offset(10)}" id="plus10">+10 frames</button>
+                <button data-bind="click: function(){offset(-10)}" id="minus10">-10 frames</button>
+                <br />
+                <button data-bind="click: setBegin" id="setBegin">set begin</button>
+                <button data-bind="click: setEnd" id="setEnd">set end</button>
+                <button data-bind="click: goToBegin" id="goToBegin">begin</button>
+                <button data-bind="click: goToEnd" id="goToEnd">end</button>
+                <br />
+                <button id="goToFrame">Go to frame</button>
+                <input type="text" id="frame" value="0" style="width:50px" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

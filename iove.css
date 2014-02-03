@@ -1,0 +1,98 @@
+body {
+    background: #333;
+    font-family: monospace;
+}
+
+#info {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: #555;
+    padding: 18px;
+    border: solid 2px #222;
+}
+
+#info table {
+    margin: 0;
+    font-size: 19px;
+    border-collapse: collapse;
+}
+
+#info tr {
+    height: 55px;
+    margin: 0;
+}
+
+#info th, #info td {
+    padding: 0;
+    margin: 0;
+    border-top: dashed 2px #444;
+    border-bottom: dashed 2px #444;
+}
+
+#info tr:first-child th, #info tr:first-child td {
+    border-top: none;
+}
+
+#info tr:last-child th, #info tr:last-child td {
+    border-bottom: none;
+}
+
+#info th {
+    width: 100px;
+    color: #999;
+    text-align: right;
+    font-weight: normal;
+}
+
+#info td {
+    width: 230px;
+    font-weight: bold;
+    color: #ccc;
+    padding-left: 5px;
+}
+
+video, button, input[type="text"], #info {
+    border-radius: 5px;
+    box-shadow:
+        3px 4px 2px rgba(000,000,000,0.3),
+        inset 0px 7px 1px rgba(011,146,156,0);
+    text-shadow:
+        0px 1px 2px rgba(011,056,077,1),
+        0px 0px 0px rgba(255,255,255,0);
+}
+
+#seek-bar {
+    margin: 5px 0px 10px 0px;
+    color: black;
+    background: #555;
+    box-shadow:
+        3px 4px 2px rgba(000,000,000,0.3),
+        inset 0px 7px 1px rgba(011,146,156,0);
+}
+
+#seek-bar::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    width: 15px;
+    height: 30px;
+    background: #222;
+}
+
+#seek-bar::-webkit-slider-thumb:active {
+    background: black;
+}
+
+button, input[type="text"] {
+    font-size: 16px;
+    font-family: monospace;
+    color: #999;
+    margin-top: 5px;
+    padding: 10px 24px;
+    background: #222;
+    border: solid 2px #444;
+}
+
+button:active {
+    background: black;
+    color: white;
+}
