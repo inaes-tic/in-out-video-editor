@@ -1,4 +1,10 @@
 language: node_js
 node_js:
-  - "0.10"
-  - "0.8"
+- '0.10'
+- '0.8'
+addons:
+  sauce_connect: true
+env:
+  global:
+  - secure: Sf+6R60tdDm4/lf2loqsxXSh/uUPuA0nUjXitTKMliVJ0yhJ+I1U74eDsAn905A9pAYZVfeotl0ZIoXmPQoY5zooFJDr7h8B3eCCDuYBju7P2JJqra7D8m/Sci0TETyi1zh4RQ4VS0gwFWewqbE7pZqvkQmzsbPOJKLtEmE66x4=
+  - secure: Blk2VzAqzfrHRc2730ZpCGF//nvgYFelq7R0Gy3NnmEx6y+n9uGSD1QSwE3IrOadLgyk8UEpowkyYgi5sOZNtoRZjZVfIDC1C1+sQ4PHJ5QY4nI0hvnnNWskpfbzoSk3O5+uehStDFle16UtDu+0IIJDNIbXaTAaU+JUTDfCRX4=
