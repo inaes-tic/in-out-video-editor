@@ -2,6 +2,8 @@ language: node_js
 node_js:
 - '0.10'
 - '0.8'
+before_script:
+    node server
 addons:
   sauce_connect: true
 env:
