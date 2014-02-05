@@ -33,7 +33,7 @@ describe('Test In-Out Video Editor', function() {
 
         return browser
             .init(options)
-            .get('http://localhost:3000/iove-local.html')
+            .get('http://localhost:3000/iove.html')
             .nodeify(done);
     });
 
