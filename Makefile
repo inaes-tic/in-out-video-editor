@@ -1,16 +1,8 @@
 export MOCHA=node_modules/mocha/bin/mocha
 
-all: npm video chromedriver
+all: npm chromedriver
 
-setup: npm video chromedriver
-
-video: videos/ed_1024.ogv
-
-videos/ed_1024.ogv:
-	@echo 'Downloading video for testing...'
-	@curl -o videos/ed_1024.ogv --location \
-	      https://archive.org/download/ElephantsDream/ed_1024.ogv
-	@echo 'Done.'
+setup: npm chromedriver
 
 chromedriver: bin/chromedriver
 
@@ -23,7 +15,7 @@ bin/chromedriver:
 	@cd bin/; unzip chromedriver.zip; rm chromedriver.zip; cd -
 	@echo 'Done.'
 
-test: npm video chromedriver unitary_test functional_test
+test: npm chromedriver unitary_test functional_test
 
 npm:
 	@npm install
@@ -38,7 +30,6 @@ functional_test:
 
 clean:
 	@rm bin/chromedriver*
-	@rm videos/ed_1024.ogv
 	@rm -r node_modules
 
-.PHONY: clean npm video chromedriver unitary_test functional_test
+.PHONY: clean npm chromedriver unitary_test functional_test

@@ -1,8 +1,7 @@
-// http://code.google.com/p/selenium/wiki/WebDriverJs
+// Using Sauce Connect: https://saucelabs.com/docs/connect
 
 var webdriver = require('wd');
 var expect = require('chai').expect;
-var timeout = 500;
 
 
 describe('Test In-Out Video Editor', function() {
@@ -11,8 +10,8 @@ describe('Test In-Out Video Editor', function() {
 
     before(function(done) {
         browser = webdriver.promiseChainRemote(
-            "ondemand.saucelabs.com",
-            80,
+            "localhost",
+            4445,
             process.env.SAUCE_USERNAME,
             process.env.SAUCE_ACCESS_KEY
         );
@@ -34,18 +33,13 @@ describe('Test In-Out Video Editor', function() {
 
         return browser
             .init(options)
+            .get('http://localhost:3000/iove-local.html')
             .nodeify(done);
     });
 
     after(function(done) {
         return browser
             .quit()
-            .nodeify(done);
-    });
-
-    beforeEach(function(done) {
-        return browser
-            .get('http://calcifer.com.ar/static/opcode/in-out-video-editor/iove.html')
             .nodeify(done);
     });
 
@@ -63,7 +57,7 @@ describe('Test In-Out Video Editor', function() {
             browser
                 .elementById('duration')
                 .text(function(err, text) {
-                    expect(text).equals('653.7916870117188');
+                    expect(text).equals('5.546667098999023');
                 })
                 .nodeify(done);
         });
@@ -72,7 +66,7 @@ describe('Test In-Out Video Editor', function() {
             browser
                 .elementById('totalFrames')
                 .text(function(err, text) {
-                    expect(text).equals('15691');
+                    expect(text).equals('166');
                 })
                 .nodeify(done);
         });
@@ -147,16 +141,16 @@ describe('Test In-Out Video Editor', function() {
                 .nodeify(done);
         });
 
-        it('Should go to frame 2500', function(done) {
+        it('Should go to frame 25', function(done) {
             browser
                 .elementById('frame')
                 .clear()
-                .type('2500')
+                .type('25')
                 .elementById('goToFrame')
                 .click()
                 .elementById('currentFrame')
                 .text(function(err, value) {
-                    expect(value).equal('2500');
+                    expect(value).equal('25');
                 })
                 .nodeify(done);
         });
@@ -167,17 +161,17 @@ describe('Test In-Out Video Editor', function() {
                 .click()
                 .elementById('beginAt')
                 .text(function(err, value) {
-                    expect(value).equal('2500');
+                    expect(value).equal('25');
                 })
                 .nodeify(done);
         });
 
-        it('Should go to frame 11000 on range input', function(done) {
+        it('Should go to frame 150 on range input', function(done) {
             browser
-                .eval('$("#seek-bar").val(11000).trigger("change")')
+                .eval('$("#seek-bar").val(150).trigger("change")')
                 .elementById('currentFrame')
                 .text(function(err, value) {
-                    expect(value).equal('11000');
+                    expect(value).equal('150');
                 })
                 .nodeify(done);
         });
@@ -188,7 +182,7 @@ describe('Test In-Out Video Editor', function() {
                 .click()
                 .elementById('endAt')
                 .text(function(err, value) {
-                    expect(value).equal('11000');
+                    expect(value).equal('150');
                 })
                 .nodeify(done);
         });
@@ -199,7 +193,7 @@ describe('Test In-Out Video Editor', function() {
                 .click()
                 .elementById('currentFrame')
                 .text(function(err, value) {
-                    expect(value).equal('2500');
+                    expect(value).equal('25');
                 })
                 .nodeify(done);
         });
@@ -210,7 +204,7 @@ describe('Test In-Out Video Editor', function() {
                 .click()
                 .elementById('currentFrame')
                 .text(function(err, value) {
-                    expect(value).equal('11000');
+                    expect(value).equal('150');
                 })
                 .nodeify(done);
         });

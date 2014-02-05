@@ -14,12 +14,12 @@
     <script>
         $(document).ready(function() {
 
-            var width = 640;
-            var height = 360;
+            var width = 560;
+            var height = 320;
 
             var editor = new iove.InOutVideoEditor({
-                src: "videos/ed_1024.ogv",
-                fps: 24
+                src: "videos/small.ogv",
+                fps: 30
             });
 
             var view = new InOutVideoEditorView(editor, $("#video")[0]);
