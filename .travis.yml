@@ -3,10 +3,8 @@ node_js:
 - '0.10'
 - '0.8'
 before_script:
-  node server &
-  sleep 3
-  echo "Running functional tests..."
-  LOG_LEVEL=error node_modules/mocha/bin/mocha --timeout 50000 tests/func/sauce.js
+ - node server &
+ - sleep 3
 addons:
   sauce_connect: true
 env:
