@@ -26,7 +26,7 @@ unitary_test:
 
 functional_test:
 	@echo "Running functional tests..."
-	@PATH=bin:${PATH} LOG_LEVEL=error ${MOCHA} --timeout 10000 tests/func/ui.js
+	@PATH=bin:${PATH} LOG_LEVEL=error ${MOCHA} --timeout 50000 tests/func/sauce.js
 
 clean:
 	@rm bin/chromedriver*
