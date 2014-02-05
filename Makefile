@@ -1,8 +1,8 @@
 export MOCHA=node_modules/mocha/bin/mocha
 
-all: npm chromedriver
+all: npm
 
-setup: npm chromedriver
+setup: npm
 
 chromedriver: bin/chromedriver
 
@@ -15,7 +15,7 @@ bin/chromedriver:
 	@cd bin/; unzip chromedriver.zip; rm chromedriver.zip; cd -
 	@echo 'Done.'
 
-test: npm chromedriver unitary_test functional_test
+test: npm unitary_test functional_test
 
 npm:
 	@npm install
