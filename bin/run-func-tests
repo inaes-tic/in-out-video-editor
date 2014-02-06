@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Start Sauce Connect
+# This script requires the following two env variables:
+# SAUCE_USERNAME
+# SAUCE_ACCESS_KEY
+
+if [ -z "$SAUCE_USERNAME" ]
+then
+    echo "SAUCE_USERNAME is unset"
+    echo "Abort."
+    exit 1
+fi
+
+if [ -z "$SAUCE_ACCESS_KEY" ]
+then
+    echo "SAUCE_ACCESS_KEY is unset"
+    echo "Abort."
+    exit 1
+fi
+
+READY_FILE="/tmp/connect-ready-$RANDOM"
+
+echo "Starting Sauce Connect ..."
+java -jar bin/Sauce-Connect.jar --readyfile $READY_FILE \
+    $SAUCE_USERNAME $SAUCE_ACCESS_KEY &>/dev/null &
+SAUCE_PID=$!
+
+# Wait for Connect to be ready before exiting
+while [ ! -f $READY_FILE ]; do
+  sleep .5
+done
+echo "Done."
+
+echo "Starting Node Server ..."
+node server.js &
+NODE_PID=$!
+echo "Done."
+
+echo "Running Functional Tests ..."
+mocha --timeout 50000 tests/func/sauce.js
+EXIT_STATUS=$?
+echo "Done."
+
+echo "Killing Node Server ..."
+kill $NODE_PID
+echo "Done."
+
+echo "Killing Sauce Connect ..."
+kill $SAUCE_PID
+echo "Done."
+
+exit $EXIT_STATUS

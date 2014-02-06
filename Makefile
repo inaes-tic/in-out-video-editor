@@ -1,18 +1,18 @@
 export MOCHA=node_modules/mocha/bin/mocha
 
-all: npm
+all: npm sauce_connect
 
-setup: npm
+setup: npm sauce_connect
 
-chromedriver: bin/chromedriver
+sauce_connect: bin/Sauce-Connect.jar
 
-bin/chromedriver:
-	@echo 'Downloading Chrome driver...'
-	@curl -o bin/chromedriver.zip \
-	      http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux32.zip
+bin/Sauce-Connect.jar:
+	@echo 'Downloading Sauce Connect...'
+	@curl -o bin/Sauce-Connect-latest.zip \
+	      http://saucelabs.com/downloads/Sauce-Connect-latest.zip
 	@echo 'Done.'
-	@echo 'Unzipping chromedriver...'
-	@cd bin/; unzip chromedriver.zip; rm chromedriver.zip; cd -
+	@echo 'Unzipping Sauce Connect...'
+	@cd bin/; unzip Sauce-Connect-latest.zip; rm Sauce-Connect-latest.zip; cd -
 	@echo 'Done.'
 
 test: npm unitary_test functional_test
@@ -26,10 +26,16 @@ unitary_test:
 
 functional_test:
 	@echo "Running functional tests..."
-	@PATH=bin:${PATH} LOG_LEVEL=error ${MOCHA} --timeout 50000 tests/func/sauce.js
+	@LOG_LEVEL=error ${MOCHA} --timeout 50000 tests/func/sauce.js
+
+serve:
+	@echo "Starting server..."
+	@node server &
 
 clean:
-	@rm bin/chromedriver*
+	@rm bin/Sauce-Connect.jar
+	@rm bin/NOTICE.txt
+	@rm bin/license.html
 	@rm -r node_modules
 
-.PHONY: clean npm chromedriver unitary_test functional_test
+.PHONY: clean npm sauce_connect unitary_test functional_test
