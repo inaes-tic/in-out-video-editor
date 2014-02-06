@@ -25,10 +25,7 @@ unitary_test:
 	@LOG_LEVEL=error ${MOCHA} --timeout 10000 tests/unit/model.js
 
 functional_test:
-	@echo "Running functional tests..."
-	@LOG_LEVEL=error ${MOCHA} --timeout 50000 tests/func/sauce.js
-
-sauce:
+	@echo "Running funcional tests..."
 	@bin/run-func-tests
 
 serve:
