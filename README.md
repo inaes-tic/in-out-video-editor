@@ -13,10 +13,27 @@ make
 Testing
 -------
 
-Run unitary and functional tests
+Run unitary tests
 
 ```bash
-make test
+mocha -t 10000 tests/unit/model.js
+```
+
+Run functional test
+
+```bash
+#shell 1
+node server.js
+```
+
+```bash
+#shell 2
+java -jar Sauce-Connect.jar $SAUCE_USERNAME $SAUCE_ACCESS_KEY
+```
+
+```bash
+#shell 3
+mocha -t 50000 tests/func/sauce.js
 ```
 
 Basic usage
