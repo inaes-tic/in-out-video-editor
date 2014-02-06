@@ -15,7 +15,7 @@ bin/Sauce-Connect.jar:
 	@cd bin/; unzip Sauce-Connect-latest.zip; rm Sauce-Connect-latest.zip; cd -
 	@echo 'Done.'
 
-test: npm unitary_test functional_test
+test: npm sauce_connect unitary_test functional_test
 
 npm:
 	@npm install
