@@ -28,6 +28,9 @@ functional_test:
 	@echo "Running functional tests..."
 	@LOG_LEVEL=error ${MOCHA} --timeout 50000 tests/func/sauce.js
 
+sauce:
+	@bin/run-func-tests
+
 serve:
 	@echo "Starting server..."
 	@node server &
