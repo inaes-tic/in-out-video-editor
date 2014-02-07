@@ -19,10 +19,10 @@ describe("Sync tests", function() {
     });
 
     it("Convert frame to time (fps = 25)", function() {
-        expect( this.editor.frameToTime(0) ).equals(0);
-        expect( this.editor.frameToTime(1) ).equals(0.04);
-        expect( this.editor.frameToTime(2) ).equals(0.08);
-        expect( this.editor.frameToTime(3) ).equals(0.12);
+        expect( this.editor.frameToTime(0) ).equals(0.000001);
+        expect( this.editor.frameToTime(1) ).equals(0.040001);
+        expect( this.editor.frameToTime(2) ).equals(0.080001);
+        expect( this.editor.frameToTime(3) ).equals(0.120001);
     });
 
 });

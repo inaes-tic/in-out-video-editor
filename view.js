@@ -14,9 +14,7 @@ var InOutVideoEditorView = kb.ViewModel.extend({
         });
 
         $(this.video).bind('timeupdate', function() {
-            if ( ! self.video.paused ) {
-                self.currentTime(self.video.currentTime);
-            }
+            self.currentTime(self.video.currentTime);
             self.currentFrame(self.model().timeToFrame(self.currentTime()));
         });
     },
@@ -44,8 +42,7 @@ var InOutVideoEditorView = kb.ViewModel.extend({
     },
 
     goToFrame: function(frame) {
-        this.currentTime(this.model().frameToTime(frame))
-        this.video.currentTime = this.currentTime();
+        this.video.currentTime = this.model().frameToTime(frame);
     },
 
     goToBegin: function() {

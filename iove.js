@@ -20,7 +20,7 @@
         },
 
         frameToTime: function(frame) {
-            return frame / this.get('fps');
+            return parseFloat((frame / this.get('fps')).toFixed(6)) + 0.000001;
         },
 
     });
