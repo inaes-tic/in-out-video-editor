@@ -4,36 +4,10 @@ HTML5 In Out Video Editor
 Setup
 -----
 
-Get the npm packages, the video sample and the chrome driver for testing
+Get the npm packages and the Sauce Labs Connect server
 
 ```bash
 make
-```
-
-Testing
--------
-
-Run unitary tests
-
-```bash
-mocha -t 10000 tests/unit/model.js
-```
-
-Run functional test
-
-```bash
-#shell 1
-node server.js
-```
-
-```bash
-#shell 2
-java -jar Sauce-Connect.jar $SAUCE_USERNAME $SAUCE_ACCESS_KEY
-```
-
-```bash
-#shell 3
-mocha -t 50000 tests/func/sauce.js
 ```
 
 Basic usage
@@ -50,3 +24,33 @@ Complete example
 ----------------
 
 Look at iove.html file
+
+Tests
+-----
+
+A Sauce Labs account is required to run the functional tests.
+Create an Sauce Labs account and export the following env variables:
+
+```bash
+export SAUCE_USERNAME=[your-username]
+export SAUCE_ACCESS_KEY=[your-sauce-access-key]
+```
+
+Run all tests (unitary and functional)
+
+```bash
+make test
+```
+
+Run only unitary tests
+
+```bash
+make unitary_test
+```
+
+Run only functional tests
+
+```bash
+make functional_test
+```
+
