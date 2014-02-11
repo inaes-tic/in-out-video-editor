@@ -33,9 +33,9 @@ serve:
 	@node server &
 
 clean:
-	@rm bin/Sauce-Connect.jar
-	@rm bin/NOTICE.txt
-	@rm bin/license.html
-	@rm -r node_modules
+	@rm -f bin/Sauce-Connect.jar
+	@rm -f bin/NOTICE.txt
+	@rm -f bin/license.html
+	@rm -rf node_modules
 
 .PHONY: clean npm sauce_connect unitary_test functional_test
