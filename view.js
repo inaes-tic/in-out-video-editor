@@ -55,7 +55,6 @@ var InOutVideoEditorView = kb.ViewModel.extend({
                     self.keys = '';
                 }
             }
-            self.currentFrame(self.model().timeToFrame(self.currentTime()));
             if (spaceKey) {
                 if (self.video.paused) {
                     self.play();
