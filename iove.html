@@ -24,8 +24,12 @@
 
             var view = new InOutVideoEditorView(editor, $("#video")[0]);
             ko.applyBindings(view, $("#content")[0]);
+            view.applyKeyBindings();
 
-            $('#video').css({width: width, heigth: height});
+            $('#video')
+                .css({width: width, heigth: height})
+                .focus();
+
             $('#seek-bar').css({width: width});
             $('#goToFrame').click(function() {
                 view.goToFrame($('#frame').val());
