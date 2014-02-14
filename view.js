@@ -50,7 +50,10 @@ var InOutVideoEditorView = kb.ViewModel.extend({
             } else {
                 if (self.keys) {
                     if (key == 'G') {
-                        self.goToFrame(parseInt(self.keys));
+                        var frame = parseInt(self.keys);
+                        if (frame <= self.totalFrames()) {
+                            self.goToFrame(frame);
+                        }
                     }
                     self.keys = '';
                 }
@@ -61,6 +64,7 @@ var InOutVideoEditorView = kb.ViewModel.extend({
                 } else {
                     self.pause();
                 }
+                e.preventDefault();
             }
             if (arrowRightKey && !shiftKey) {
                 self.offset(1);
