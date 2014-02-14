@@ -50,10 +50,7 @@ var InOutVideoEditorView = kb.ViewModel.extend({
             } else {
                 if (self.keys) {
                     if (key == 'G') {
-                        var frame = parseInt(self.keys);
-                        if (frame <= self.totalFrames()) {
-                            self.goToFrame(frame);
-                        }
+                        self.goToFrame(parseInt(self.keys));
                     }
                     self.keys = '';
                 }
@@ -133,8 +130,16 @@ var InOutVideoEditorView = kb.ViewModel.extend({
     },
 
     goToFrame: function(frame) {
-        this.currentTime(this.model().frameToTime(frame))
-        this.video.currentTime = this.currentTime();
+        if (frame < 1) {
+            frame = 1;
+        }
+        if (frame > this.totalFrames()) {
+            frame = this.totalFrames();
+        }
+        if (this.currentFrame() != frame) {
+            this.currentTime(this.model().frameToTime(frame))
+            this.video.currentTime = this.currentTime();
+        }
     },
 
     goToBegin: function() {
